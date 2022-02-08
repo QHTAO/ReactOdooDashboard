@@ -10,7 +10,6 @@ module.exports = merge(common, {
     path: path.resolve(__dirname, "./dist"),
   },
 
-
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
@@ -39,4 +38,5 @@ module.exports = merge(common, {
       },
     ],
   },
+
 });

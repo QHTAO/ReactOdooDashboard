@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as salesApi from "@/api/salesApi";
 
+
 function Sales() {
   useEffect(async () => {
     const result = await salesApi.getSalesOrderChartDataOfMonth("amount");

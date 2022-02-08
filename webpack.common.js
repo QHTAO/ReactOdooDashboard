@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
@@ -43,4 +44,13 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    // 设置环境变量信息
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      },
+    }),
+  ],
 };
