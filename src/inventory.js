@@ -1,7 +1,7 @@
 import * as React from "react";
 import { render } from "react-dom";
 import Inventory from "./pages/Inventory";
-import "./styles/index.css";
+import "./styles/index.scss";
 
 if (process.env.NODE_ENV === "production") {
   odoo.define("dashboard.inventory", function (require) {
