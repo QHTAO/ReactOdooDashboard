@@ -10,3 +10,6 @@ export const getSalesOrderChartDataOfMonth = async (unit) => {
     }
   );
 };
+export const getSalesAmountDataOfToday = async () => {
+  return faker.random.number({ min: 1000, max: 50000 });
+};
