@@ -2,13 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ButtonGroup, Button } from "react-bootstrap";
 
-import { getTimeScope } from "../utils/time";
 import { getMonthStart, getMonthEnd } from "../utils/time";
 import { getYearEnd, getYearStart } from "../utils/time";
 import { getNextMonth, getLastMonth } from "../utils/time";
 import { getNextYear, getLastYear } from "../utils/time";
 
-function SwitchDate(props) {
+function ChartSwitchDate(props) {
   const { scope, date, onDateChange } = props;
 
   // 切换时间类型
@@ -100,9 +99,9 @@ function SwitchDate(props) {
   );
 }
 
-SwitchDate.propTypes = {
+ChartSwitchDate.propTypes = {
   date: PropTypes.object,
   onDateChange: PropTypes.func,
 };
 
-export default SwitchDate;
+export default ChartSwitchDate;

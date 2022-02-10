@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ButtonGroup, Button } from "react-bootstrap";
 
-function SwitchUnit(props) {
+function ChartSwitchUnit(props) {
   const { unit, onUnitChange } = props;
   return (
     <ButtonGroup>
@@ -26,8 +26,8 @@ function SwitchUnit(props) {
   );
 }
 
-SwitchUnit.propTypes = {
+ChartSwitchUnit.propTypes = {
   onUnitsChange: PropTypes.func,
 };
 
-export default SwitchUnit;
+export default ChartSwitchUnit;

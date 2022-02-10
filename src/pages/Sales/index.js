@@ -2,6 +2,9 @@ import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import SalesAmountOfToday from "./SalesAmountOfToday";
 import SalesOrderChart from "./SalesOrderChart";
+
+import SalesChart from "./SalesChart";
+
 function Sales() {
   return (
     <Container fluid className="r-dashbord">
@@ -22,12 +25,7 @@ function Sales() {
           <SalesAmountOfToday />
         </Col>
       </Row>
-      <Row>
-        <Col md={7}>
-          <SalesOrderChart />
-        </Col>
- 
-      </Row>
+      <SalesChart />
     </Container>
   );
 }
