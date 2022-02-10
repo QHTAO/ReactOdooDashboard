@@ -1,7 +1,6 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import SalesAmountOfToday from "./SalesAmountOfToday";
-import SalesOrderChart from "./SalesOrderChart";
 
 import SalesChart from "./SalesChart";
 

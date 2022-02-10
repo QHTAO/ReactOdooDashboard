@@ -10,26 +10,14 @@ function SalesChart() {
         <Chart
           title="销售订单"
           type="lineChart"
-          fetchData={async ({ unit, startTime, endTime }) => {
-            return await salesApi.getSalesOrderChartData({
-              unit,
-              startTime,
-              endTime,
-            });
-          }}
+          fetchData={salesApi.getSalesOrderChartData}
         />
       </Col>
       <Col>
         <Chart
           title="销售产品"
           type="lineChart"
-          fetchData={async ({ unit, startTime, endTime }) => {
-            return await salesApi.getSalesOrderChartData({
-              unit,
-              startTime,
-              endTime,
-            });
-          }}
+          fetchData={salesApi.getSalesOrderChartData}
         />
       </Col>
     </Row>
