@@ -2,16 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ButtonGroup, Button } from "react-bootstrap";
 
-function SwitchUnits(props) {
-  const { unit, onUnitsChange } = props;
+function SwitchUnit(props) {
+  const { unit, onUnitChange } = props;
   return (
     <ButtonGroup>
       <Button
         variant={unit === "amount" ? "primary" : "light"}
         onClick={() => {
-          if (onUnitsChange) {
-            onUnitsChange("amount");
-          }
+          onUnitChange && onUnitChange("amount");
         }}
       >
         金额
@@ -19,9 +17,7 @@ function SwitchUnits(props) {
       <Button
         variant={unit === "quantity" ? "primary" : "light"}
         onClick={() => {
-          if (onUnitsChange) {
-            onUnitsChange("quantity");
-          }
+          onUnitChange && onUnitChange("quantity");
         }}
       >
         数量
@@ -30,8 +26,8 @@ function SwitchUnits(props) {
   );
 }
 
-SwitchUnits.propTypes = {
+SwitchUnit.propTypes = {
   onUnitsChange: PropTypes.func,
 };
 
-export default SwitchUnits;
+export default SwitchUnit;

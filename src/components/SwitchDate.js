@@ -3,27 +3,61 @@ import PropTypes from "prop-types";
 import { ButtonGroup, Button } from "react-bootstrap";
 
 import { getTimeScope } from "../utils/time";
-import { getThisMonthStart, getThisMonthEnd } from "../utils/time";
-import { getThisYearEnd, getThisYearStart } from "../utils/time";
+import { getMonthStart, getMonthEnd } from "../utils/time";
+import { getYearEnd, getYearStart } from "../utils/time";
+import { getNextMonth, getLastMonth } from "../utils/time";
+import { getNextYear, getLastYear } from "../utils/time";
 
 function SwitchDate(props) {
-  const { date, onDateChange } = props;
-  const scope = getTimeScope({ ...date });
+  const { scope, date, onDateChange } = props;
 
   // 切换时间类型
   const handleSelectMonth = () => {
     onDateChange({
-      startTime: getThisMonthStart(),
-      endTime: getThisMonthEnd(),
+      startTime: getMonthStart(),
+      endTime: getMonthEnd(),
     });
   };
   const handleSelectYear = () => {
     onDateChange({
-      startTime: getThisYearStart(),
-      endTime: getThisYearEnd(),
+      startTime: getYearStart(),
+      endTime: getYearEnd(),
     });
   };
+
   // 切换月份和年份
+  const handleLastMonth = () => {
+    let startTime = getLastMonth(date.startTime);
+    let endTime = getMonthEnd(startTime);
+    onDateChange({
+      startTime,
+      endTime,
+    });
+  };
+  const handleNextMonth = () => {
+    let startTime = getNextMonth(date.startTime);
+    let endTime = getMonthEnd(startTime);
+    onDateChange({
+      startTime,
+      endTime,
+    });
+  };
+  const handleLastYear = () => {
+    let startTime = getLastYear(date.startTime);
+    let endTime = getYearEnd(startTime);
+    onDateChange({
+      startTime,
+      endTime,
+    });
+  };
+  const handleNextYear = () => {
+    let startTime = getNextYear(date.startTime);
+    let endTime = getYearEnd(startTime);
+    onDateChange({
+      startTime,
+      endTime,
+    });
+  };
 
   return (
     <div className="float-right">
@@ -43,14 +77,22 @@ function SwitchDate(props) {
 
         {scope === "month" && (
           <ButtonGroup size="sm">
-            <Button variant="light">上一月</Button>
-            <Button variant="light">下一月</Button>
+            <Button variant="light" onClick={handleLastMonth}>
+              上一月
+            </Button>
+            <Button variant="light" onClick={handleNextMonth}>
+              下一月
+            </Button>
           </ButtonGroup>
         )}
         {scope === "year" && (
           <ButtonGroup size="sm">
-            <Button variant="light">上一年</Button>
-            <Button variant="light">下一年</Button>
+            <Button variant="light" onClick={handleLastYear}>
+              上一年
+            </Button>
+            <Button variant="light" onClick={handleNextYear}>
+              下一年
+            </Button>
           </ButtonGroup>
         )}
       </ButtonGroup>
