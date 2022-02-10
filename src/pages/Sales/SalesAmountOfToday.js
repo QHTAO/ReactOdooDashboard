@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { salesApi } from "@/api";
-import { EpitomeCard } from "@/components";
+import { Epitome } from "@/components";
 import { format } from "@/utils";
 function SalesAmountOfToday() {
   const [data, setData] = useState(0);
@@ -10,7 +10,7 @@ function SalesAmountOfToday() {
   }, []);
 
   return (
-    <EpitomeCard data={{ title: "本日销售金额", value: format.money(data) }} />
+    <Epitome data={{ title: "本日销售金额", value: format.money(data) }} />
   );
 }
 

@@ -18,20 +18,13 @@ function EpitomeCard(props) {
 EpitomeCard.propTypes = {
   data: PropTypes.shape({
     title: PropTypes.string,
-    value: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   }).isRequired,
   data2: PropTypes.shape({
     title: PropTypes.string,
-    value: PropTypes.number,
-  }).isRequired,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
 };
-
-// const Title = styled.h5``;
-// const Body = styled.h1``;
-// const Footer = styled.p`
-//   margin-bottom: 0rem;
-//   min-height: 1.6rem;
-// `;
 
 EpitomeCard.defaultProps = {
   data: {
