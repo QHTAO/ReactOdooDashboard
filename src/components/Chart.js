@@ -4,7 +4,7 @@ import { ChartSwitchDate, ChartSwitchUnit, ChartContent, ChartTitle } from ".";
 import { getTimeScope, getMonthStart, getMonthEnd } from "../utils/time";
 import { getYearAndMonth, getYear } from "../utils/time";
 
-function Chart({ type, title, fetchData }) {
+function Chart({ color ,type, title, fetchData }) {
   const [unit, setUnit] = useState("amount");
   const [date, setDate] = useState({
     startTime: getMonthStart(),
@@ -13,14 +13,13 @@ function Chart({ type, title, fetchData }) {
   const [data, setData] = useState([]);
 
   //计算属性
-  const getChartScope = () => {
-    return getTimeScope({ ...date });
-  };
+
+  const scope = getTimeScope({ ...date });
   const getChartTitle = () => {
-    if (getChartScope() === "month") {
+    if (scope === "month") {
       return getYearAndMonth(date.startTime) + title;
     }
-    if (getChartScope() === "year") {
+    if (scope === "year") {
       return getYear(date.startTime) + title;
     }
   };
@@ -46,7 +45,7 @@ function Chart({ type, title, fetchData }) {
           </Col>
           <Col>
             <ChartSwitchDate
-              scope={getChartScope()}
+              scope={scope}
               date={date}
               onDateChange={handleDateChange}
             />
@@ -54,7 +53,7 @@ function Chart({ type, title, fetchData }) {
         </Row>
       </Card.Header>
       <Card.Body>
-        <ChartContent type={type} data={data} />
+        <ChartContent color ={color} scope={scope} unit={unit} type={type} data={data} />
       </Card.Body>
       <ChartTitle title={getChartTitle()} />
     </Card>
