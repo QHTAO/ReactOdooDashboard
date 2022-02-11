@@ -1,29 +1,13 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import SalesAmountOfToday from "./SalesAmountOfToday";
+import SalesEpitome from "./SalesEpitome";
 
 import SalesChart from "./SalesChart";
 
 function Sales() {
   return (
     <Container fluid className="r-dashbord">
-      <Row>
-        <Col>
-          <SalesAmountOfToday />
-        </Col>
-        <Col>
-          <SalesAmountOfToday />
-        </Col>
-        <Col>
-          <SalesAmountOfToday />
-        </Col>
-        <Col>
-          <SalesAmountOfToday />
-        </Col>
-        <Col>
-          <SalesAmountOfToday />
-        </Col>
-      </Row>
+      <SalesEpitome />
       <SalesChart />
     </Container>
   );

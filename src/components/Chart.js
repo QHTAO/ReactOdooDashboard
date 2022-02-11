@@ -4,7 +4,7 @@ import { ChartSwitchDate, ChartSwitchUnit, ChartContent, ChartTitle } from ".";
 import { getTimeScope, getMonthStart, getMonthEnd } from "../utils/time";
 import { getYearAndMonth, getYear } from "../utils/time";
 
-function Chart({ color ,type, title, fetchData }) {
+function Chart({ color, type, title, fetchData }) {
   const [unit, setUnit] = useState("amount");
   const [date, setDate] = useState({
     startTime: getMonthStart(),
@@ -52,9 +52,7 @@ function Chart({ color ,type, title, fetchData }) {
           </Col>
         </Row>
       </Card.Header>
-      <Card.Body>
-        <ChartContent color ={color} scope={scope} unit={unit} type={type} data={data} />
-      </Card.Body>
+      <ChartContent {...{ color, scope, unit, type, data }} />
       <ChartTitle title={getChartTitle()} />
     </Card>
   );
