@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
 
 function ChartTitle({ title }) {
@@ -8,5 +9,7 @@ function ChartTitle({ title }) {
     </Card.Footer>
   );
 }
-
+ChartTitle.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 export default ChartTitle;

@@ -16,7 +16,6 @@ export const getSalesAmountEpitomeDataOfMonth = async () => {
   };
 };
 
-
 // 获取销售订单数据
 export const getSalesOrderChartData = async ({ endTime, startTime, unit }) => {
   const scope = getTimeScope({ endTime, startTime });
@@ -37,6 +36,77 @@ export const getSalesOrderChartData = async ({ endTime, startTime, unit }) => {
     return Array.from({ length: 12 }).map((d, index) => {
       return {
         x: moment().month(index).startOf("month").toDate(),
+        y: faker.random.number({ min: 1000, max: 50000 }),
+      };
+    });
+  }
+};
+// 获取销售产品数据
+export const getSalesProductsChartData = async ({
+  endTime,
+  startTime,
+  unit,
+}) => {
+  const scope = getTimeScope({ endTime, startTime });
+  if (scope === "month") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      index += 1;
+      return {
+        x: "产品" + index,
+        y: faker.random.number({ min: 100, max: 5000 }),
+      };
+    });
+  }
+  if (scope === "year") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      return {
+        x: "产品" + index,
+        y: faker.random.number({ min: 1000, max: 50000 }),
+      };
+    });
+  }
+};
+// 获取销售分类数据
+export const getSalesClassificationChartData = async ({
+  endTime,
+  startTime,
+  unit,
+}) => {
+  const scope = getTimeScope({ endTime, startTime });
+  if (scope === "month") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      index += 1;
+      return {
+        x: "分类" + index,
+        y: faker.random.number({ min: 100, max: 5000 }),
+      };
+    });
+  }
+  if (scope === "year") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      return {
+        x: "分类" + index,
+        y: faker.random.number({ min: 1000, max: 50000 }),
+      };
+    });
+  }
+};
+// 获取销售团队数据
+export const getSalesTeamChartData = async ({ endTime, startTime }) => {
+  const scope = getTimeScope({ endTime, startTime });
+  if (scope === "month") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      index += 1;
+      return {
+        x: "团队" + index,
+        y: faker.random.number({ min: 100, max: 5000 }),
+      };
+    });
+  }
+  if (scope === "year") {
+    return Array.from({ length: 10 }).map((d, index) => {
+      return {
+        x: "团队" + index,
         y: faker.random.number({ min: 1000, max: 50000 }),
       };
     });

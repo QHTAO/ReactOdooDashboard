@@ -4,17 +4,22 @@ import NVD3Chart from "react-nvd3";
 import { Card } from "react-bootstrap";
 const d3 = window.d3;
 
-function ChartContent({ scope, type, data, color }) {
+function ChartContent({ scope, type, data, color, unit }) {
   const getXAxisTickFormat = (d) => {
-    const x0 = data.length ? data[0].x : null;
-    if (scope === "month" && x0 instanceof Date) {
+    if (scope === "month" && xIsDate()) {
       return d3.time.format("%d日")(d);
     }
-    if (scope === "year" && x0 instanceof Date) {
+    if (scope === "year" && xIsDate()) {
       return d3.time.format("%m月")(d);
     }
     return d;
   };
+
+  const xIsDate = () => {
+    let x0 = data.length ? data[0].x : null;
+    return x0 instanceof Date;
+  };
+
   const getYDomain = (_data) => {
     const max = d3.max(_data, function (d) {
       return d["y"];
@@ -34,7 +39,7 @@ function ChartContent({ scope, type, data, color }) {
             xScale={d3.time.scale()}
             xAxis={{
               tickFormat: getXAxisTickFormat,
-              rotateLabels: -15,
+              //  rotateLabels: -15,
             }}
             yAxis={{
               tickFormat: (d) => {
@@ -61,7 +66,7 @@ function ChartContent({ scope, type, data, color }) {
             staggerLabels={false}
             xAxis={{
               tickFormat: getXAxisTickFormat,
-              rotateLabels: -15,
+              // rotateLabels: -15,
             }}
             yAxis={{
               tickFormat: (d) => {
@@ -89,12 +94,13 @@ function ChartContent({ scope, type, data, color }) {
             showLabels={false}
             valueFormat={d3.format(",.0f")}
             datum={data.map((d) => {
-              if (scope === "month") {
+              if (scope === "month" && xIsDate()) {
                 return { ...d, x: d3.time.format("%d日")(d.x) };
               }
-              if (scope === "year") {
+              if (scope === "year" && xIsDate()) {
                 return { ...d, x: d3.time.format("%m月")(d.x) };
               }
+              return d;
             })}
           />
         </Card.Body>

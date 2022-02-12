@@ -1,7 +1,12 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Chart } from "../../components";
-import { salesApi } from "../../api";
+import {
+  getSalesOrderChartData,
+  getSalesProductsChartData,
+  getSalesClassificationChartData,
+  getSalesTeamChartData,
+} from "../../api/salesApi";
 
 function SalesChart() {
   return (
@@ -11,14 +16,14 @@ function SalesChart() {
           <Chart
             title="销售订单"
             type="lineChart"
-            fetchData={salesApi.getSalesOrderChartData}
+            fetchData={getSalesOrderChartData}
           />
         </Col>
         <Col>
           <Chart
             title="销售产品"
             type="discreteBarChart"
-            fetchData={salesApi.getSalesOrderChartData}
+            fetchData={getSalesProductsChartData}
           />
         </Col>
       </Row>
@@ -27,14 +32,14 @@ function SalesChart() {
           <Chart
             title="销售分类"
             type="pieChart"
-            fetchData={salesApi.getSalesOrderChartData}
+            fetchData={getSalesClassificationChartData}
           />
         </Col>
         <Col>
           <Chart
             title="销售团队"
             type="discreteBarChart"
-            fetchData={salesApi.getSalesOrderChartData}
+            fetchData={getSalesTeamChartData}
           />
         </Col>
       </Row>
