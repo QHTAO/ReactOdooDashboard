@@ -7,7 +7,7 @@ function SalesChart() {
   return (
     <>
       <Row>
-        <Col md={7}>
+        <Col>
           <Chart
             title="销售订单"
             type="lineChart"
@@ -17,7 +17,6 @@ function SalesChart() {
         <Col>
           <Chart
             title="销售产品"
-            // color="#fdc225"
             type="discreteBarChart"
             fetchData={salesApi.getSalesOrderChartData}
           />
@@ -26,13 +25,18 @@ function SalesChart() {
       <Row>
         <Col>
           <Chart
-            title="销售订单"
+            title="销售分类"
             type="pieChart"
             fetchData={salesApi.getSalesOrderChartData}
           />
         </Col>
-        <Col></Col>
-        <Col></Col>
+        <Col>
+          <Chart
+            title="销售团队"
+            type="discreteBarChart"
+            fetchData={salesApi.getSalesOrderChartData}
+          />
+        </Col>
       </Row>
     </>
   );

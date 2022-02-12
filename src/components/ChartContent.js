@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import NVD3Chart from "react-nvd3";
 import { Card } from "react-bootstrap";
 const d3 = window.d3;
 
 function ChartContent({ scope, type, data, color }) {
-  const x0 = data.length ? data[0].x : null;
   const getXAxisTickFormat = (d) => {
+    const x0 = data.length ? data[0].x : null;
     if (scope === "month" && x0 instanceof Date) {
       return d3.time.format("%d日")(d);
     }
@@ -14,11 +15,11 @@ function ChartContent({ scope, type, data, color }) {
     }
     return d;
   };
-
-  const getYDomain = () => {
-    if (data.length) {
-    }
-    return [0, 100000];
+  const getYDomain = (_data) => {
+    const max = d3.max(_data, function (d) {
+      return d["y"];
+    });
+    return [0, max + max / 10];
   };
 
   switch (type) {
@@ -35,7 +36,12 @@ function ChartContent({ scope, type, data, color }) {
               tickFormat: getXAxisTickFormat,
               rotateLabels: -15,
             }}
-            yDomain={getYDomain()}
+            yAxis={{
+              tickFormat: (d) => {
+                return d3.format(",.0f")(d);
+              },
+            }}
+            yDomain={getYDomain(data)}
             datum={[
               {
                 color: color,
@@ -57,10 +63,14 @@ function ChartContent({ scope, type, data, color }) {
               tickFormat: getXAxisTickFormat,
               rotateLabels: -15,
             }}
-            yDomain={getYDomain()}
+            yAxis={{
+              tickFormat: (d) => {
+                return d3.format(",.0f")(d);
+              },
+            }}
+            yDomain={getYDomain(data)}
             color={color ? [color] : ["#1f77b4"]}
             showValues={false}
-            valueFormat={d3.format(",.0f")}
             datum={[
               {
                 values: data,
@@ -93,5 +103,11 @@ function ChartContent({ scope, type, data, color }) {
       return null;
   }
 }
+ChartContent.propTypes = {
+  scope: PropTypes.string,
+  color: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
+};
 
 export default ChartContent;

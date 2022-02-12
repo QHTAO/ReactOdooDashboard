@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { Card, Row, Col } from "react-bootstrap";
 import { ChartSwitchDate, ChartSwitchUnit, ChartContent, ChartTitle } from ".";
 import { getTimeScope, getMonthStart, getMonthEnd } from "../utils/time";
@@ -57,5 +58,13 @@ function Chart({ color, type, title, fetchData }) {
     </Card>
   );
 }
+Chart.propTypes = {
+  title: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  fetchData: PropTypes.func.isRequired,
+};
 
+Chart.defaultProps = {
+  type: "discreteBarChart",
+};
 export default Chart;

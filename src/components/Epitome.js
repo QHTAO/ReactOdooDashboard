@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 
 function Epitome({ data, data2 }) {
   return (
-    <Card>
+    <Card className="r-epitome">
       <Card.Body>
         <h5>{data.title}</h5>
         <h1>{data.value}</h1>
