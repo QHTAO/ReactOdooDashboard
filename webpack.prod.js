@@ -14,9 +14,23 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "initial", // 全域配置
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "initial",
+          name: "vendors",
+          enforce: true,
+          priority: 10, // 預設為 0，必須大於預設 cacheGroups
+        },
+      },
+    },
   },
 });
