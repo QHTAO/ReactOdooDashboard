@@ -37,21 +37,6 @@ function Chart({ color, type, title, fetchData }) {
 
   return (
     <Card className="r-chart">
-      {/* <Card.Header>
-        <Row noGutters>
-          <Col md={3}>
-            <ChartSwitchUnit unit={unit} onUnitChange={handleUnitChange} />
-          </Col>
-          <Col>
-            <ChartSwitchDate
-              scope={scope}
-              date={date}
-              onDateChange={handleDateChange}
-            />
-          </Col>
-        </Row>
-      </Card.Header> */}
-
       <ChartControls
         unit={unit}
         onUnitChange={handleUnitChange}

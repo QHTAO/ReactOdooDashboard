@@ -15,6 +15,21 @@ export const getSalesAmountEpitomeDataOfMonth = async () => {
     profit: faker.random.number({ min: 1000, max: 5000 }),
   };
 };
+// 获取当前未发货订单
+export const getUnshippedOrderQuantityData = async () => {
+  return {
+    notShipped: faker.random.number({ min: 10, max: 500 }),
+    notInvoiced: faker.random.number({ min: 10, max: 50 }),
+  };
+};
+// 获取当前应收账款
+export const getAccountsReceivableData = async () => {
+  return faker.random.number({ min: 1000, max: 50000 });
+};
+// 获取本月退货单数
+export const getReturnOrderQuantityDataOfThisMonth = async () => {
+  return faker.random.number({ min: 10, max: 50 });
+};
 
 // 获取销售订单数据
 export const getSalesOrderChartData = async ({ endTime, startTime, unit }) => {
