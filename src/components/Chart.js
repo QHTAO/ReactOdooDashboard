@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Card } from "react-bootstrap";
-import { ChartControls, ChartContent, ChartTitle } from ".";
+import {
+  ChartControls,
+  DiscreteBarChart,
+  ChartTitle,
+  LineChart,
+  PieChart,
+} from ".";
 import { getTimeScope, getMonthStart, getMonthEnd } from "../utils/time";
 import { getYearAndMonth, getYear } from "../utils/time";
 
@@ -12,17 +18,6 @@ function Chart({ color, type, title, fetchData }) {
     endTime: getMonthEnd(),
   });
   const [data, setData] = useState([]);
-
-  //计算属性
-  const scope = getTimeScope({ ...date });
-  const getChartTitle = () => {
-    if (scope === "month") {
-      return getYearAndMonth(date.startTime) + title;
-    }
-    if (scope === "year") {
-      return getYear(date.startTime) + title;
-    }
-  };
   //事件处理
   const handleUnitChange = (newUnit) => {
     setUnit(newUnit);
@@ -35,6 +30,21 @@ function Chart({ color, type, title, fetchData }) {
     setData(result);
   }, [unit, date]);
 
+  const renderNvd3Chart = ({ date, color, type, data }) => {
+    switch (type) {
+      case "lineChart":
+        return <LineChart date={date} color={color} data={data} />;
+      case "discreteBarChart":
+        return (
+          <DiscreteBarChart date={date} color={color}  data={data} />
+        );
+      case "pieChart":
+        return <PieChart date={date} color={color} data={data} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Card className="r-chart">
       <ChartControls
@@ -43,8 +53,11 @@ function Chart({ color, type, title, fetchData }) {
         date={date}
         onDateChange={handleDateChange}
       />
-      <ChartContent {...{ color, scope, unit, type, data }} />
-      <ChartTitle title={getChartTitle()} />
+
+      <Card.Body> {renderNvd3Chart({ date, color, type, data })}</Card.Body>
+
+      {/* <ChartContent date={date} color={color} type={type} data={data} /> */}
+      <ChartTitle date={date} title={title} />
     </Card>
   );
 }

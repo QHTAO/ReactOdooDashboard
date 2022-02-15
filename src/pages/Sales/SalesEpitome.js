@@ -99,7 +99,6 @@ function SalesEpitome() {
       <SalesAmountEpitomeDataOfMonth />
       <UnshippedOrderQuantityData />
       <AccountsReceivableData />
-
       <ReturnOrderQuantityDataOfThisMonth />
     </Row>
   );

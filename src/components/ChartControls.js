@@ -128,7 +128,11 @@ function ChartControls({ unit, date, onDateChange, onUnitChange }) {
 }
 ChartControls.propTypes = {
   unit: PropTypes.string.isRequired,
-  date: PropTypes.object.isRequired,
+  date: PropTypes.shape({
+    startTime: PropTypes.object,
+    endTime: PropTypes.object,
+  }).isRequired,
+
   onDateChange: PropTypes.func.isRequired,
   onUnitChange: PropTypes.func.isRequired,
 };
